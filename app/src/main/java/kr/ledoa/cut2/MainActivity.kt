@@ -5,6 +5,9 @@ import android.view.View
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
@@ -15,13 +18,13 @@ class MainActivity:AppCompatActivity(){
  private val clips=mutableListOf<Clip>(); private var selected=-1
  private val picker=registerForActivityResult(ActivityResultContracts.OpenMultipleDocuments()){uris->
   uris.forEach{u->try{contentResolver.takePersistableUriPermission(u,android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION)}catch(_:Exception){};clips+=Clip(System.nanoTime(),u)}
-  rebuild(); if(selected<0&&clips.isNotEmpty())select(0)
+  rebuild();if(selected<0&&clips.isNotEmpty())select(0)
  }
- override fun onCreate(s:Bundle?){super.onCreate(s);b=ActivityMainBinding.inflate(layoutInflater);setContentView(b.root)
+ override fun onCreate(s:Bundle?){super.onCreate(s);WindowCompat.setDecorFitsSystemWindows(window,false);b=ActivityMainBinding.inflate(layoutInflater);setContentView(b.root)
+  ViewCompat.setOnApplyWindowInsetsListener(b.root){v,i->val bars=i.getInsets(WindowInsetsCompat.Type.systemBars());v.setPadding(v.paddingLeft,bars.top+8,v.paddingRight,bars.bottom);i}
   player=ExoPlayer.Builder(this).build();b.playerView.player=player
   player.addListener(object:Player.Listener{override fun onIsPlayingChanged(x:Boolean){b.playPause.text=if(x)"일시정지" else "재생"}})
-  b.addMedia.setOnClickListener{picker.launch(arrayOf("video/*"))}
-  b.playPause.setOnClickListener{if(player.isPlaying)player.pause()else player.play()}
+  b.addMedia.setOnClickListener{picker.launch(arrayOf("video/*"))};b.playPause.setOnClickListener{if(player.isPlaying)player.pause()else player.play()}
   b.delete.setOnClickListener{if(selected in clips.indices){clips.removeAt(selected);selected=-1;player.stop();player.clearMediaItems();rebuild();if(clips.isNotEmpty())select(0)else b.emptyText.visibility=View.VISIBLE}}
   b.split.setOnClickListener{split()}
  }
