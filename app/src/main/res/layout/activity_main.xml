@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="#0B1018" android:padding="12dp">
+<LinearLayout android:layout_width="match_parent" android:layout_height="56dp" android:gravity="center_vertical">
+<TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="LEDOA CUT 2" android:textColor="#FFFFFF" android:textSize="22sp" android:textStyle="bold"/>
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="v0.1.0" android:textColor="#AAB4C4" android:textSize="13sp"/></LinearLayout>
+<FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:background="#101824">
+<androidx.media3.ui.PlayerView android:id="@+id/playerView" android:layout_width="match_parent" android:layout_height="match_parent"/>
+<TextView android:id="@+id/emptyText" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="영상을 불러오세요" android:textColor="#D8DEE9" android:textSize="18sp"/></FrameLayout>
+<HorizontalScrollView android:layout_width="match_parent" android:layout_height="86dp" android:fillViewport="true"><LinearLayout android:id="@+id/timeline" android:layout_width="wrap_content" android:layout_height="match_parent" android:orientation="horizontal" android:gravity="center_vertical"/></HorizontalScrollView>
+<LinearLayout android:layout_width="match_parent" android:layout_height="72dp" android:orientation="horizontal">
+<Button android:id="@+id/addMedia" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:text="미디어"/>
+<Button android:id="@+id/playPause" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:text="재생"/>
+<Button android:id="@+id/split" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:text="분할"/>
+<Button android:id="@+id/delete" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:text="삭제"/></LinearLayout></LinearLayout>
