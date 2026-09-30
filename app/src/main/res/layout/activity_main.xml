@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="#0B1018" android:paddingLeft="12dp" android:paddingTop="8dp" android:paddingRight="12dp">
  <LinearLayout android:layout_width="match_parent" android:layout_height="52dp" android:gravity="center_vertical">
   <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="LEDOA CUT 2" android:textColor="#FFFFFF" android:textSize="22sp" android:textStyle="bold"/>
-  <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="v0.1.1" android:textColor="#AAB4C4" android:textSize="13sp"/>
+  <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="v0.1.2" android:textColor="#AAB4C4" android:textSize="13sp"/>
  </LinearLayout>
  <FrameLayout android:id="@+id/previewContainer" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:background="#000000">
   <androidx.media3.ui.PlayerView android:id="@+id/playerView" android:layout_width="match_parent" android:layout_height="match_parent" android:keepScreenOn="true" app:resize_mode="fit" xmlns:app="http://schemas.android.com/apk/res-auto"/>
