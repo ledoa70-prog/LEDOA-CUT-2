@@ -1,5 +1,7 @@
+import java.util.Properties
 plugins { id("com.android.application"); id("org.jetbrains.kotlin.android") }
-val vp=java.util.Properties().apply { rootProject.file("app/version.properties").inputStream().use { load(it) } }
+val vp=Properties()
+rootProject.file("app/version.properties").inputStream().use { vp.load(it) }
 android {
  namespace="kr.ledoa.cut2"; compileSdk=35
  defaultConfig { applicationId="kr.ledoa.cut2"; minSdk=26; targetSdk=35; versionCode=vp.getProperty("VERSION_CODE").toInt(); versionName=vp.getProperty("VERSION_NAME") }
