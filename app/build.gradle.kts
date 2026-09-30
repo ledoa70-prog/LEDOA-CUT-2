@@ -6,6 +6,8 @@ android {
  namespace="kr.ledoa.cut2"; compileSdk=35
  defaultConfig { applicationId="kr.ledoa.cut2"; minSdk=26; targetSdk=35; versionCode=vp.getProperty("VERSION_CODE").toInt(); versionName=vp.getProperty("VERSION_NAME") }
  buildFeatures { viewBinding=true }
+ compileOptions { sourceCompatibility=JavaVersion.VERSION_17; targetCompatibility=JavaVersion.VERSION_17 }
+ kotlinOptions { jvmTarget="17" }
 }
 dependencies {
  implementation("androidx.core:core-ktx:1.15.0")
