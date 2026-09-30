@@ -1,0 +1,1 @@
+<resources><style name="Theme.LedoaCut2" parent="Theme.MaterialComponents.DayNight.NoActionBar"><item name="android:fontFamily">sans</item><item name="android:navigationBarColor">#0B1018</item><item name="android:statusBarColor">#0B1018</item><item name="colorPrimary">#D7A75F</item></style></resources>
