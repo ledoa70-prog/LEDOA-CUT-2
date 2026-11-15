@@ -17,14 +17,28 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.10.2'
+      - name: Install LEDOA supplied launcher icon
+        run: |
+          mkdir -p payment/app/src/main/res/drawable-nodpi
+          base64 --decode payment/launcher_icon_png.base64 > payment/app/src/main/res/drawable-nodpi/ledoa_icon.png
+          python3 - <<'PY'
+          import struct
+          from pathlib import Path
+          path = Path('payment/app/src/main/res/drawable-nodpi/ledoa_icon.png')
+          img = path.read_bytes()
+          assert img.startswith(b'\x89PNG\r\n\x1a\n')
+          assert struct.unpack('>II', img[16:24]) == (192,192)
+          print(f'LEDOA launcher icon verified: {len(img)} bytes, 192x192 PNG')
+          PY
       - name: Build Android debug APK
         run: gradle -p payment :app:assembleDebug --stacktrace
-      - name: Validate APK file
+      - name: Validate APK and launcher icon
         run: |
           test -s payment/app/build/outputs/apk/debug/app-debug.apk
           unzip -t payment/app/build/outputs/apk/debug/app-debug.apk | tail -1
+          unzip -l payment/app/build/outputs/apk/debug/app-debug.apk | grep ledoa_icon
       - uses: actions/upload-artifact@v4
         with:
-          name: LEDOA_IndoPayment_Android_v1.0.0
+          name: LEDOA_IndoPayment_Android_v1.0.1_ICON
           path: payment/app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
